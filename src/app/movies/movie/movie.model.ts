@@ -6,7 +6,7 @@ export class Movie {
   public image_url: string;
   public created_date: string;
 
-  constructor(original_title: string, imdb_id:string, release_date: string, is_highlight: boolean, image_url: string, created_date: string) {
+  constructor(original_title: string, imdb_id: string, release_date: string, is_highlight: boolean, image_url: string, created_date: string) {
     this.original_title = original_title;
     this.imdb_id = imdb_id;
     this.release_date = release_date;
