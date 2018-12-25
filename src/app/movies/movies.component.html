@@ -1,62 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-    <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-    <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-    <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-    <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-    <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-    <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-    <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-    <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-    <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-    <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-    <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-    <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-    <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-    <div class="col-md-2">
-      <app-movie></app-movie>
-    </div>
-    <div class="col-md-2">
-      <app-movie></app-movie>
+      <app-movie
+      *ngFor="let movieElement of movies"
+      [movie]=movieElement></app-movie>
     </div>
   </div>
 </div>
