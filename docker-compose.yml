@@ -1,0 +1,25 @@
+version: '2.3'
+services:
+  service:
+    image: andimenge/movie-favs-frntnd:87a0b5483168159e781eaa6fe9f0f38c7c72d32e
+    init: true
+    scale: 1
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=movie-favs-frntnd" # backend name
+      - "traefik.port=80"
+      - "traefik.frontend.rule=Host:movies.andimenge.de"
+      - "traefik.docker.network=loadbalancer"
+    environment:
+    - TZ=Europe/Berlin
+    cpu_count: 1
+    mem_reservation: 100m
+    mem_limit: 1500000000
+    restart: always
+    networks:
+    - loadbalancer
+
+networks:
+  loadbalancer:
+    external: true
+  
