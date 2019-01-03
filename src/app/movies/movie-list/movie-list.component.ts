@@ -12,8 +12,8 @@ export class MovieListComponent implements OnInit {
 
   constructor(private moviesService: MoviesService) { }
 
-  ngOnInit() {
-    this.movies = this.moviesService.getMovies();
+  async ngOnInit() {
+    this.movies = await this.moviesService.getMovies();
   }
 
 }

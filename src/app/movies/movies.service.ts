@@ -1,14 +1,14 @@
 import { Movie } from './movie/movie.model';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
+@Injectable()
 export class MoviesService {
-  // Mock all the things
-  private movies: Movie[] = [
-    new Movie('Hellboy', 'https://www.imdb.com/title/tt2274648/', '2019-04-11', false, 'https://image.tmdb.org/t/p/w185_and_h278_bestv2/mpc7oxbiPQ0ICn0EEnaSOUf5Ag5.jpg', '2018-12-23T17:46:13.334Z'),
-    new Movie('Hellboy', 'https://www.imdb.com/title/tt2274648/', '2019-04-11', false, 'https://image.tmdb.org/t/p/w185_and_h278_bestv2/mpc7oxbiPQ0ICn0EEnaSOUf5Ag5.jpg', '2018-12-23T17:46:13.334Z'),
-    new Movie('Hellboy', 'https://www.imdb.com/title/tt2274648/', '2019-04-11', false, 'https://image.tmdb.org/t/p/w185_and_h278_bestv2/mpc7oxbiPQ0ICn0EEnaSOUf5Ag5.jpg', '2018-12-23T17:46:13.334Z')
-  ];
+  constructor(private http: HttpClient) {} // this is needed for HTTP client
 
-  getMovies() {
-    return this.movies.slice(); // slice returns a copy of the movies array. So that we will not modify the actual movies array.
+  async getMovies(): Promise<Movie[]> {
+    // return this.movies.slice(); // slice returns a copy of the movies array. So that we will not modify the actual movies array.
+    const movies: any = await this.http.get<any>('https://movies.andimenge.de/api/movies').toPromise();
+    return movies.movies;
   }
 }
