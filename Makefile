@@ -2,7 +2,7 @@ name := movie-favs-frntnd
 dockerTag := $(shell git rev-parse head)
 
 docker:
-	docker build -t andimenge/$(name):$(dockerTag) .
+	@docker build -t andimenge/$(name):$(dockerTag) .
 
 push:
-	docker push andimenge/$(name):$(dockerTag)
+	@docker push andimenge/$(name):$(dockerTag)
