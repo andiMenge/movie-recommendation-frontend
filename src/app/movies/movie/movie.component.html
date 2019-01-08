@@ -1,5 +1,8 @@
-<div class="col-md-1">
-  <div class="card mb-4" style="width: 10rem;">
-    <img class="card-img-top" src="{{movie.image_url}}" alt="{{ movie.original_title }}">
+<div class="col mb-3">
+  <div class="card border-0" style="width: 9rem;">
+    <img class="card-img-top rounded" src="{{movie.image_url}}" alt="{{ movie.original_title }}">
+    <div class="card-body p-0" >
+      <p class="card-text text-center text-truncate font-weight-light">{{ movie.original_title }}</p>
+    </div>
   </div>
 </div>
