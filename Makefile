@@ -11,9 +11,6 @@ docker:
 push:
 	@docker push andimenge/$(name):$(dockerTag)
 
-deploy:
-	@DOCKER_HOST="tcp://threethink.io:2376"
-	@DOCKER_TLS_VERIFY=1
-	@DOCKER_CERT_PATH=~/.docker/threethink.io/
-	docker-compose up -d
+# deploy:
+# 	docker-compose up -d
 	
