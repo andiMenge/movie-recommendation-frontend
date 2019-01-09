@@ -1,3 +1,5 @@
 <div class="row">
-  <app-movie *ngFor="let movieElement of movies" [movie]=movieElement></app-movie>
+  <div class="col" *ngFor="let movieElement of movies">
+    <app-movie [movie]=movieElement></app-movie>
+  </div>
 </div>
