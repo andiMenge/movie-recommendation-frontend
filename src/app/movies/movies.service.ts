@@ -8,7 +8,9 @@ export class MoviesService {
 
   async getMovies(): Promise<Movie[]> {
     // return this.movies.slice(); // slice returns a copy of the movies array. So that we will not modify the actual movies array.
-    const movies: any = await this.http.get<any>('https://movies.andimenge.de/api/movies').toPromise();
+    const movies: any = await this.http
+      .get<any>('https://movies.andimenge.de/api/movies')
+      .toPromise();
     return movies.movies;
   }
 }
