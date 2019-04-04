@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Movie } from '../movie/movie.model';
 import { MoviesService } from '../movies.service';
 
@@ -7,13 +7,23 @@ import { MoviesService } from '../movies.service';
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.css']
 })
-export class MovieListComponent implements OnInit {
+export class MovieListComponent implements OnInit, OnDestroy {
   movies: Movie[];
 
-  constructor(private moviesService: MoviesService) { }
+  constructor(private moviesService: MoviesService) {
+    this.moviesService.movies.subscribe(
+      (data: Movie[]) => {
+        this.movies = data;
+      }
+    );
+  }
 
   async ngOnInit() {
-    this.movies = await this.moviesService.getMovies();
+    this.moviesService.getMovies();
+  }
+
+  ngOnDestroy() {
+    this.moviesService.movies.unsubscribe();
   }
 
 }
