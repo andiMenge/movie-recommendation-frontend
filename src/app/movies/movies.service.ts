@@ -34,11 +34,10 @@ export class MoviesService {
   }
 
   isGenreInMovie(movie: Movie, genreName: string): boolean {
-    const genreNameFirstCharUpper = this.capitalizeFirstLetter(genreName);
-    return movie.genres.indexOf(genreNameFirstCharUpper) > -1;
+    return movie.genres.indexOf(genreName) > -1;
   }
 
-  capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  // capitalizeFirstLetter(string) {
+  //   return string.charAt(0).toUpperCase() + string.slice(1);
+  // }
 }
