@@ -3,13 +3,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MoviesService {
   movies = new Subject<Movie[]>();
+  moviesArr: Movie[];
 
-  constructor(private http: HttpClient) {} // this is needed for HTTP client
+  constructor(private http: HttpClient) { }
 
-  async fetchMovies(): Promise<Movie[]> {
+  async fetchMovies() {
     const movies: any = await this.http
       .get<any>('https://movies.andimenge.de/api/movies')
       .toPromise();
@@ -17,6 +20,25 @@ export class MoviesService {
   }
 
   async getMovies() {
-    this.movies.next(await this.fetchMovies());
+    this.moviesArr = await this.fetchMovies();
+    this.movies.next(this.moviesArr);
+  }
+
+  filterByGenre(genreName: string) {
+    const filteredMovies = this.moviesArr.filter(movie => this.isGenreInMovie(movie, genreName));
+    if (filteredMovies.length > 0) {
+      this.movies.next(filteredMovies);
+    } else {
+      console.log('found no movies with that genre.');
+    }
+  }
+
+  isGenreInMovie(movie: Movie, genreName: string): boolean {
+    const genreNameFirstCharUpper = this.capitalizeFirstLetter(genreName);
+    return movie.genres.indexOf(genreNameFirstCharUpper) > -1;
+  }
+
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 }

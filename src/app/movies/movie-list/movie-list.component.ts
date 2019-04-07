@@ -11,11 +11,9 @@ export class MovieListComponent implements OnInit, OnDestroy {
   movies: Movie[];
 
   constructor(private moviesService: MoviesService) {
-    this.moviesService.movies.subscribe(
-      (data: Movie[]) => {
-        this.movies = data;
-      }
-    );
+    this.moviesService.movies.subscribe((data: Movie[]) => {
+      this.movies = data;
+    });
   }
 
   async ngOnInit() {
@@ -25,5 +23,4 @@ export class MovieListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.moviesService.movies.unsubscribe();
   }
-
 }

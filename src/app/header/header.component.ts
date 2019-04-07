@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MoviesService } from '../movies/movies.service';
 
 @Component({
   selector: 'app-header',
@@ -6,13 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  constructor(private moviesService: MoviesService) {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onFilter(event) {
-    console.log(event)
+    this.moviesService.filterByGenre(event.target.id);
   }
 }
