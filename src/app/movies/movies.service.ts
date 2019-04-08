@@ -29,15 +29,16 @@ export class MoviesService {
     if (filteredMovies.length > 0) {
       this.movies.next(filteredMovies);
     } else {
-      console.log('found no movies with that genre.');
+      console.log('no movies found with genre:', genreName);
     }
+  }
+
+  resetFilter() {
+    this.movies.next(this.moviesArr);
   }
 
   isGenreInMovie(movie: Movie, genreName: string): boolean {
     return movie.genres.indexOf(genreName) > -1;
   }
 
-  // capitalizeFirstLetter(string) {
-  //   return string.charAt(0).toUpperCase() + string.slice(1);
-  // }
 }
