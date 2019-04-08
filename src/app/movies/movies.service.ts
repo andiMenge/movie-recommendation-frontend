@@ -7,8 +7,8 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class MoviesService {
-  movies = new Subject<Movie[]>();
-  moviesArr: Movie[];
+  moviesSubject = new Subject<Movie[]>();
+  movies: Movie[];
 
   constructor(private http: HttpClient) { }
 
@@ -20,21 +20,21 @@ export class MoviesService {
   }
 
   async getMovies() {
-    this.moviesArr = await this.fetchMovies();
-    this.movies.next(this.moviesArr);
+    this.movies = await this.fetchMovies();
+    this.moviesSubject.next(this.movies);
   }
 
   filterByGenre(genreName: string) {
-    const filteredMovies = this.moviesArr.filter(movie => this.isGenreInMovie(movie, genreName));
+    const filteredMovies = this.movies.filter(movie => this.isGenreInMovie(movie, genreName));
     if (filteredMovies.length > 0) {
-      this.movies.next(filteredMovies);
+      this.moviesSubject.next(filteredMovies);
     } else {
       console.log('no movies found with genre:', genreName);
     }
   }
 
   resetFilter() {
-    this.movies.next(this.moviesArr);
+    this.moviesSubject.next(this.movies);
   }
 
   isGenreInMovie(movie: Movie, genreName: string): boolean {
