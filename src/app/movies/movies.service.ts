@@ -13,10 +13,16 @@ export class MoviesService {
   constructor(private http: HttpClient) { }
 
   async fetchMovies() {
+    try {
     const movies: any = await this.http
       .get<any>('https://movies.andimenge.de/api/movies')
       .toPromise();
-    return movies.movies;
+      this.movies = movies.movies;
+      this.moviesSubject.next(this.movies);
+    } catch (error) {
+      alert(error.message);
+      console.log(error.message);
+    }
   }
 
   async getMovies() {
