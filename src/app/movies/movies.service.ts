@@ -1,22 +1,22 @@
 import { Movie } from './movie/movie.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoviesService {
-  moviesSubject = new Subject<Movie[]>();
-  movies: Movie[];
+  private movies: Movie[];
+  private moviesSubject = new BehaviorSubject<Movie[]>([]);
 
   constructor(private http: HttpClient) { }
 
   async fetchMovies() {
     try {
-    const movies: any = await this.http
-      .get<any>('https://movies.andimenge.de/api/movies')
-      .toPromise();
+      const movies: any = await this.http
+        .get<any>('https://movies.andimenge.de/api/movies')
+        .toPromise();
       this.movies = movies.movies;
       this.moviesSubject.next(this.movies);
     } catch (error) {
@@ -25,9 +25,9 @@ export class MoviesService {
     }
   }
 
-  async getMovies() {
-    this.movies = await this.fetchMovies();
-    this.moviesSubject.next(this.movies);
+  getMovies(): Observable<Movie[]> {
+    this.fetchMovies();
+    return this.moviesSubject.asObservable();
   }
 
   filterByGenre(genreName: string) {
