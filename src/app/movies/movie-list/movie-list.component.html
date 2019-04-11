@@ -1,5 +1,5 @@
 <div class="row mx-3">
-  <div class="col" *ngFor="let movieElement of movies">
+  <div class="col" *ngFor="let movieElement of (movies | async)">
     <app-movie [movie]=movieElement></app-movie>
   </div>
 </div>
