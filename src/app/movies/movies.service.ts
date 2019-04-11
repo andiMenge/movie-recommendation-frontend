@@ -20,7 +20,6 @@ export class MoviesService {
       this.movies = movies.movies;
       this.moviesSubject.next(this.movies);
     } catch (error) {
-      alert(error.message);
       console.log(error.message);
     }
   }
