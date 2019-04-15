@@ -15,6 +15,10 @@ export class HeaderComponent implements OnInit {
     this.moviesService.filterByGenre(event.target.id);
   }
 
+  onSort(event) {
+    this.moviesService.sort(event.target.id);
+  }
+
   resetFilter() {
     this.moviesService.resetFilter();
   }
