@@ -38,13 +38,13 @@ export class MoviesService {
     }
   }
 
-  sort(by: string) {
-    if (by === 'added-date') {
+  sort(type: string) {
+    if (type === 'added-date') {
       this.movies.sort(function (a, b) {
         return new Date(b.created_date).getTime() - new Date(a.created_date).getTime();
       });
     }
-    if (by === 'release-date') {
+    if (type === 'release-date') {
       this.movies.sort(function (a, b) {
         return new Date(b.release_date).getTime() - new Date(a.release_date).getTime();
       });
