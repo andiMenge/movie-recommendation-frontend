@@ -39,13 +39,14 @@ export class MoviesService {
   }
 
   sort(type: string) {
+    const displayedMovies = this.moviesSubject.value;
     if (type === 'added-date') {
-      this.movies.sort(function (a, b) {
+      displayedMovies.sort(function (a, b) {
         return new Date(b.created_date).getTime() - new Date(a.created_date).getTime();
       });
     }
     if (type === 'release-date') {
-      this.movies.sort(function (a, b) {
+      displayedMovies.sort(function (a, b) {
         return new Date(b.release_date).getTime() - new Date(a.release_date).getTime();
       });
     }
