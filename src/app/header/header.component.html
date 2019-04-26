@@ -34,7 +34,8 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">Sort</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item btn-sm" href="#">Release Date</a>
+          <button (click)="onSort($event)" id=release-date class="dropdown-item btn-sm">Release Date</button>
+          <button (click)="onSort($event)" id=added-date class="dropdown-item btn-sm">Added Date</button>
         </div>
       </li>
     </ul>

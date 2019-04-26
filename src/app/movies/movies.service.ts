@@ -38,8 +38,23 @@ export class MoviesService {
     }
   }
 
+  sort(type: string) {
+    const displayedMovies = this.moviesSubject.value;
+    if (type === 'added-date') {
+      displayedMovies.sort(function (a, b) {
+        return new Date(b.created_date).getTime() - new Date(a.created_date).getTime();
+      });
+    }
+    if (type === 'release-date') {
+      displayedMovies.sort(function (a, b) {
+        return new Date(b.release_date).getTime() - new Date(a.release_date).getTime();
+      });
+    }
+  }
+
   resetFilter() {
     this.moviesSubject.next(this.movies);
+    this.sort('release-date');
   }
 
   isGenreInMovie(movie: Movie, genreName: string): boolean {
