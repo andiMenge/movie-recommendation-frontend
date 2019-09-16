@@ -1,7 +1,7 @@
-version: '2.3'
+version: "2.3"
 services:
   service:
-    image: andimenge/movie-favs-frntnd:5979390b027484814d9fa89365422a3afd001b09
+    image: andimenge/movie-favs-frntnd:f4fcd2e7c95d0fe54987682717677e5073c3b474
     init: true
     scale: 1
     labels:
@@ -11,15 +11,14 @@ services:
       - "traefik.frontend.rule=Host:movies.andimenge.de"
       - "traefik.docker.network=loadbalancer"
     environment:
-    - TZ=Europe/Berlin
+      - TZ=Europe/Berlin
     cpu_count: 1
     mem_reservation: 100m
     mem_limit: 1500000000
     restart: always
     networks:
-    - loadbalancer
+      - loadbalancer
 
 networks:
   loadbalancer:
     external: true
-  
